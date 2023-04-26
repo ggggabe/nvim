@@ -23,9 +23,31 @@ return require('packer').startup(function(use)
   use {'andymass/vim-matchup', evenet = 'VimEnter'}
   use 'folke/tokyonight.nvim'
 
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end
+  }
+
+  use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
+  use 'junegunn/fzf.vim'
+
+  use {
+    'ms-jpq/coq_nvim',
+    branch = 'coq'
+  }
+
+  use {
+    'ms-jpq/coq.artifacts', 
+    branch = 'artifacts'
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
-
 end)
 
