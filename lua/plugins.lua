@@ -46,6 +46,21 @@ return require('packer').startup(function(use)
     branch = 'artifacts'
   }
 
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+    config = function ()
+      require'nvim-treesitter.configs'.setup {
+        highlight = {
+          enable = true
+        }
+      }
+    end
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
